@@ -27,5 +27,5 @@ getConnection((err, db) => {
 });
 exports.instance = function () {
     console.log("returning instance");
-   return instance;
+   return instance.db(config.dbName);
 }
