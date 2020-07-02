@@ -31,7 +31,7 @@ function uploadFaceInS3Bucket(imgBuffer, faceId, next) {
  * @param file - Image file object.
  * @param next - returns error or success response.
  */
-function registerFace(file, next) {
+exports.registerFace = function(file, next) {
   var imgBuffer = file.buffer;
 
   rekognition.indexFaces({
@@ -64,16 +64,9 @@ function getMatchedFaceFromS3Bucket(faceId, file, next) {
     "Key": faceId
   }, (error, response) => {
     if (response && response.Body) {
-      next(null, {matchedFace: response.Body.toString('base64')});
+      next(null, {matchedFace: response.Body.toString('base64'), faceId : faceId});
     } else {
-      uploadFaceInS3Bucket(file.buffer, faceId, (err, data) => {
-        if (!err) {
-          console.log("S3 upload successful - ", data); // successful response
-        } else {
-          console.error("S3 upload error - ", err); // successful response
-        }
-        next(null, "No match found. Registered face for future searches !!!");
-      });
+      next(null, "No match found. Registered face for future searches !!!");
     }
   });
 }
@@ -98,15 +91,6 @@ exports.matchFaces = function (file, next) {
       if (data.FaceMatches && data.FaceMatches.length > 0 && data.FaceMatches[0].Face) {
         let faceId = data.FaceMatches[0].Face.FaceId;
         getMatchedFaceFromS3Bucket(faceId, file, next);
-      } else {
-        registerFace(file, (err, data) => {
-          if (!err) {
-            console.log("S3 upload successful - ", data); // successful response
-          } else {
-            console.error("S3 upload error - ", err); // successful response
-          }
-          next(null, "No match found. Registered face for future searches !!!");
-        });
       }
     }
   });

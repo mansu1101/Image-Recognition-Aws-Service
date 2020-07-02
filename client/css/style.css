@@ -31,11 +31,12 @@ body {
 
 .navbar-default {
     background-color: #9eabf3;
-    border-color: #e7e7e7;
+    border-color: #cddc39;
 }
 
 nav.navbar.navbar-default {
-    background: #efefef;
+    background: #cddc39;
+
 }
 .rounded-0 {
     border-radius: 0 !important;
