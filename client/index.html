@@ -6,12 +6,14 @@
     <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </head>
+
 <body ng-controller="MyCtrl">
 
 <header>
@@ -31,6 +33,22 @@
 </header>
 
 <div  class="container midSection"  align="center">
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Face Recognition System</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-home"></i> Register</a></li>
+            <li><a href="#about"><i class="fa fa-shield"></i> Login</a></li>
+            <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+        </ul>
+    </div>
+</nav>
+<div ng-app="imageRecognition" class="container midSection" ng-controller="MyCtrl" align="center">
+
     <!--<h1>*** ITT Face Recognition System ***</h1>-->
     <div class="input-group" align="center">
         <button class="btn btn-default mr-20  rounded-0">
@@ -40,16 +58,19 @@
     </div>
     <div class="col-md-6">
         <h3 align="center">PreView Image:</h3>
+
         <img  class="img-rounded" ng-show="true" ng-src="{{filepreview || 'http://placehold.it/180'}}" class="img-responsive"/>
     </div>
     <div class="col-md-6">
-
-
+        <img width="400" height="400" class="img-rounded" ng-show="true" ng-src="{{filepreview || 'http://placehold.it/180'}}" class="img-responsive"/>
+    </div>
+    <div class="col-md-6">
 
         <!--<h3 align="center">Status</h3>-->
         <img width="400" height="400" ng-src="img/Loading_icon.gif" ng-show="showLoadingIcon"/>
         <!--<img ng-show="isFileMatched" width="400" height="400"
              ng-src="data:image/JPEG;base64,{{matchedFileSrc}}" class="img-responsive"/>-->
+
         <div>
             <h3>Status</h3>
             <div class="card text-left">
@@ -57,6 +78,12 @@
                 <div class="p-20">
 
                 </div>
+
+        <div class="container">
+            <h3>Status</h3>
+            <div class="card">
+                <div class="card-body">Basic card</div>
+
             </div>
         </div>
         <div ng-model="ShowSuccessMessage">{{ShowSuccessMessage}}</div>
@@ -119,5 +146,15 @@
     </div>
 </div>
 
+
+<footer class="text-center navbar navbar-default footer">
+    <div class="container">
+        <!--<div class="navbar-footer">
+            <a class="navbar-brand" href="/">Face Recognition System</a>
+        </div>-->
+        <p><footer>&copy;Face Recognition System</footer>
+        </p>
+    </div>
+</footer>
 </body>
 </html>
