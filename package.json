@@ -11,6 +11,7 @@
   "dependencies": {
     "aws-sdk": "^2.387.0",
     "express": "^4.16.4",
+    "mongodb": "^3.5.9",
     "morgan": "^1.9.1",
     "multer": "^1.4.1"
   }
