@@ -1,7 +1,7 @@
 {
-  "name": "aws_image_rekognition_ui",
+  "name": "Face Recognitation System",
   "version": "1.0.0",
-  "description": "UI for aws_image_rekognition application.",
+  "description": "UI for aws_face_rekognition application.",
   "author": "Manish Joshi",
   "license": "ISC",
   "dependencies": {
