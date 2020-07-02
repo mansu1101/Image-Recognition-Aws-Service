@@ -47,5 +47,6 @@ function createFaceCollection() {
  *  2. createS3Bucket() - To delete existing s3 bucket and create a new one.
  */
 
-// createFaceCollection();
-// createS3Bucket();
+/*
+createFaceCollection();
+createS3Bucket();*/
