@@ -1,5 +1,5 @@
 {
-  "name": "Face Recognitation System",
+  "name": "face_recognitation_attendance_system",
   "version": "1.0.0",
   "description": "UI for aws_face_rekognition application.",
   "author": "Manish Joshi",
