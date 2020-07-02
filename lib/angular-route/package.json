@@ -1,0 +1,30 @@
+{
+  "name": "angular-route",
+  "version": "1.4.10",
+  "description": "AngularJS router module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angular/angular.js.git"
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "router",
+    "client-side"
+  ],
+  "author": "Angular Core Team <angular-core+npm@google.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "homepage": "http://angularjs.org"
+
+,"_resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.4.10.tgz"
+,"_integrity": "sha1-xvDDZ8mQ4GwmrlW4oCXpWE3lc3I="
+,"_from": "angular-route@1.4.10"
+}
