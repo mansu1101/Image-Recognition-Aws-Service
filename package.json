@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Nitesh Sharma",
+  "author": "Manish Joshi",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.387.0",
