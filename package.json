@@ -1,5 +1,5 @@
 {
-  "name": "face_recognitation_attendance_system",
+  "name": "face_recognitation_system",
   "version": "1.0.0",
   "description": "Node.js scalable server for aws_face_rekognition application.",
   "main": "index.js",
