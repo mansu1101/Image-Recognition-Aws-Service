@@ -2,7 +2,7 @@
   "name": "aws_image_rekognition_ui",
   "version": "1.0.0",
   "description": "UI for aws_image_rekognition application.",
-  "author": "Nitesh Sharma",
+  "author": "Manish Joshi",
   "license": "ISC",
   "dependencies": {
     "angular": "^1.7.5",
