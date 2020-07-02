@@ -1,7 +1,7 @@
 {
-  "name": "Face Recognitation System",
+  "name": "aws_image_rekognition",
   "version": "1.0.0",
-  "description": "Node.js scalable server for aws_face_rekognition application.",
+  "description": "Node.js scalable server for aws_image_rekognition application.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

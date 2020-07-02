@@ -34,8 +34,9 @@ angular.module('imageRecognition', []).directive("fileHandler", [function () {
     console.log("success!!");
     $scope.showLoadingIcon = false;
     if (response.data && response.data.matchedFace) {
-      $scope.isFileMatched = true;
-      $scope.matchedFileSrc = response.data.matchedFace;
+     /* $scope.isFileMatched = true;
+      $scope.matchedFileSrc = response.data.matchedFace;*/
+      $scope.ShowSuccessMessage = "Your attendace has been submitted succssfully";
     } else {
       $scope.showUnMatchMessage = true;
       $scope.unMatchMessage = response.data;
