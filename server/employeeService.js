@@ -56,9 +56,9 @@ exports.submitAttendance = function (file, next) {
                         status: 1,
                         date: date,
                     }
-                    db.collection("attendance").insertOne(attendanceData, function (err, data) {
+                    db.collection("attendance").insertOne(attendanceData, function (err, res) {
                         console.log("attendance submitted successfully");
-                        next(null, data);
+                        next(null, {image : data.matchedFace, empDetails: result[0]});
                     })
                 } else {
                     next("No employee with faceId", null)
