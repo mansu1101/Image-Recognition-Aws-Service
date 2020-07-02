@@ -19,6 +19,7 @@ angular.module('imageRecognition', []).directive("fileHandler", [function () {
     }
   }
 }]).controller('MyCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+  $scope.testme = "Yee you can see me";
   $scope.$watch("myFile", function (oldVal, newVal) {
     if (oldVal !== newVal) {
       $scope.showUnMatchMessage = false;
@@ -31,12 +32,12 @@ angular.module('imageRecognition', []).directive("fileHandler", [function () {
    * @param response - http response.
    */
   function handleSuccessResponse(response) {
-    console.log("success!!");
+    console.log("Image fetch success!!");
     $scope.showLoadingIcon = false;
     if (response.data && response.data.matchedFace) {
      /* $scope.isFileMatched = true;
       $scope.matchedFileSrc = response.data.matchedFace;*/
-      $scope.ShowSuccessMessage = "Your attendace has been submitted succssfully";
+      $scope.ShowSuccessMessage = "Your attendance has been submitted successfully!";
     } else {
       $scope.showUnMatchMessage = true;
       $scope.unMatchMessage = response.data;
@@ -66,10 +67,38 @@ angular.module('imageRecognition', []).directive("fileHandler", [function () {
     var fd = new FormData();
     fd.append('image', file);
     var url = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/recognize';
+    if(file){
+      $http.post(url, fd, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+      }).then(handleSuccessResponse).catch(handleErrorResponse);
+    }else{
+      $scope.showLoadingIcon = false;
+      alert("Please Capture A Image!");
+    }
 
-    $http.post(url, fd, {
-      transformRequest: angular.identity,
-      headers: {'Content-Type': undefined}
-    }).then(handleSuccessResponse).catch(handleErrorResponse);
   };
+  $scope.user = {
+    empId: '',
+    name: '',
+    department: '',
+    email: '',
+    mobile: ''
+  };
+
+  function OnRegisterSuccess(){
+    //model hide and show the toster message
+  }
+  function OnRegisterFail(){
+    //model hide and show the toster message
+  }
+  $scope.register = function () {
+    console.log("Rgietser method called")
+    if($scope.user){
+      let url = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/api/register';
+      $http.post(url, $scope.user, {
+        headers: {'Content-Type': "application/json"}
+      }).then(OnRegisterSuccess).catch(OnRegisterFail);
+    }
+  }
 }]);

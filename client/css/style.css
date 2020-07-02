@@ -1,10 +1,18 @@
+img {
+    width:100%;
+}
 [hidden] {
     display: none !important;
 }
 main {
     overflow-y: auto;
 }
+body {
 
+    font-family: 'Nunito', sans-serif !important;
+
+
+}
 .toolbardemoBasicUsage md-toolbar .md-button.md-icon-button .favorite-icon {
     fill: #DE3641; }
 
@@ -27,4 +35,21 @@ main {
 .navbar-default {
     background-color: #9eabf3;
     border-color: #e7e7e7;
+}
+
+nav.navbar.navbar-default {
+    background: #efefef;
+}
+.rounded-0 {
+    border-radius: 0 !important;
+}
+.mr-20 {
+    margin-right:20px
+}
+.p-20 {
+    padding:20px
+}
+.card {
+    border: solid 1px #ddd;
+    border-radius: 6px;
 }
