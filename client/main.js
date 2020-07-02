@@ -61,7 +61,7 @@ angular.module('imageRecognition', []).directive("fileHandler", [function () {
     $scope.showUnMatchMessage = false;
     $scope.isFileMatched = false;
     $scope.showLoadingIcon = true;
-
+    console.log("Upload file is working...");
     var file = $scope.myFile;
     var fd = new FormData();
     fd.append('image', file);
