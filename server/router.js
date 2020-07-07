@@ -46,6 +46,6 @@ module.exports = function (app) {
             } else {
                 res.status(200).json(response.result);
             }
-        })
+        });
     });
 };

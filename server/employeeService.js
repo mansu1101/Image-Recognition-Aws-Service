@@ -31,7 +31,7 @@ exports.registerEmployeeImage = function (empData, next) {
             console.log("S3 upload successful - ", data); // successful response
             let db = connectionManager.instance();
             let query = {
-                empId: parseInt(empData.data.empId)
+                empId: empData.data.empId
             };
             db.collection("employee").update(query,
                 {$set: {faceId: data.key}}, function (error, result) {

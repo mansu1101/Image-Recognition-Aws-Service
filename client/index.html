@@ -2,6 +2,7 @@
 <head>
     <title>Face Recognition Attendance System</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="face-api.min.js"></script>
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
@@ -16,13 +17,13 @@
 
 <header>
     <nav class="navbar navbar-default">
-        <div class="container">
+        <div class="container ">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Face Recognition Attendance System</a>
+                <span class="navbar-brand" href="/">Face Recognition Attendance System</span>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"  data-toggle="modal" data-target="#registerModel"><i class="fa fa-home"></i> Register</a></li>
-                <li><a href="#"  data-toggle="modal" data-target="#loginModel"><i class="fa fa-shield"></i> Login</a></li>
+                <li><a href="#"  data-toggle="modal" data-target="#registerModel"><i class="glyphicon glyphicon-plus-sign"></i> Register</a></li>
+                <li><a href="#"  data-toggle="modal" data-target="#loginModel"><i class="glyphicon glyphicon-user"></i> Login</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#contactModel"><i class="fa fa-comment"></i> Contact</a></li>
             </ul>
         </div>
@@ -31,48 +32,49 @@
 
 <div  class="container midSection"  align="center">
     <div class="input-group" align="center">
-        <!--<button class="btn btn-default mr-20  rounded-0">
-            Capture Image <input type="file" file-handler fileinput="myFile" filepreview="filepreview" hidden>
-        </button>-->
-        <label class="btn btn-default">
+        <button class="btn btn-default mr-20  rounded-0 btnSize" data-toggle="modal" ng-click="ScanImageForAtt()" data-target="#scanImage">
+            <b>Scan Image</b>
+        </button>
+       <!-- <label class="btn btn-default">
             Browse Image <input type="file" file-handler fileinput="myFile" filepreview="filepreview" hidden>
-        </label>&nbsp;&nbsp;
-        <button class="btn btn-primary rounded-0" ng-click="uploadFile()">Submit Attendance</button>
+        </label>&nbsp;&nbsp;-->
+        <!--<button class="btn btn-primary rounded-0" ng-click="attendance()">Submit Attendance</button>-->
     </div>
-    <div class="col-md-6">
+    <!--<div class="col-md-6">
         <h3 align="center">PreView Image:</h3>
-        <img  class="img-rounded" ng-show="true" ng-src="{{filepreview || 'http://placehold.it/180'}}" class="img-responsive"/>
-    </div>
-    <div class="col-md-6">
+        &lt;!&ndash;<img  class="img-rounded" ng-show="filepreview" ng-src="{{filepreview || 'http://placehold.it/180'}}" class="img-responsive"/>&ndash;&gt;
+    </div>-->
+    <div class="col-md-12">
         <img width="400" height="400" ng-src="img/Loading_icon.gif" ng-show="showLoadingIcon"/>
         <!--<img ng-show="isFileMatched" width="400" height="400"
              ng-src="data:image/JPEG;base64,{{matchedFileSrc}}" class="img-responsive"/>-->
-        <div>
+        <div ng-if="isFileMatched">
             <h3>Status</h3>
-            <div class="card text-left">
-                <img ng-show="isFileMatched" ng-src="{{matchedFileSrc || 'http://placehold.it/140'}}" class="img-responsive"/>
-                <div class="p-20">
-                </div>
+            <div class="text-center">
+                <p><b><font color="blue">Attendance Submitted For {{employeeData.name}} From {{ employeeData.department }} Department!
+                </font></b></p>
+               <!-- <div ng-model="ShowSuccessMessage">{{ShowSuccessMessage}}</div>-->
+
+                <div class="col-sm-5 col-sm-offset-3">
+                <img width="200" height="200" ng-show="isFileMatched" ng-src="{{matchedFileSrc || 'http://placehold.it/140'}}" class="img-responsive"/>
+
             </div>
         </div>
-        <div ng-model="ShowSuccessMessage">{{ShowSuccessMessage}}</div>
-        <p ng-show="showUnMatchMessage">{{unMatchMessage}}</p>
     </div>
+        <p ng-show="showUnMatchMessage">{{unMatchMessage}}</p>
 
 </div>
-<div>
+<div class="container-fluid">
     <footer class="text-center navbar navbar-default footer">
-        <div class="container">
             <!--<div class="navbar-footer">
                 <a class="navbar-brand" href="/">Face Recognition System</a>
             </div>-->
-            <p><footer>&copy;Face Recognition System</footer>
+            <p>&copy;ITT Face Recognition System.
             </p>
-        </div>
     </footer>
 </div>
 <!-- Modal -->
-<div  class="modal fade" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div  class="modal fade glyphicon-text-color" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -145,24 +147,38 @@
     </div>
 </div>
 <div class="modal fade" id="scanImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-<div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel3">Scan Image</h4>
-            </div>
-            <label class="btn btn-default">
-                Browse Image <input type="file" file-handler fileinput="myFile" filepreview="filepreview" hidden>
-            </label>
-            <div class="modal-body">
-                <img width="300px" height="300px" class="img-rounded" ng-src="{{filepreview || 'http://placehold.it/180'}}"
-                />
+                <h4 class="modal-title" id="myModalLabel6">Scan Image</h4>
+                <video id="video" width="400" height="400" autoplay muted></video>
+                <canvas id="canvas" style="overflow:auto" hidden="true"></canvas>
+                <img src="" id="capImg" hidden="true"></img>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="registerImage()">Upload Image</button>
+                <button type="button" class="btn btn-primary" ng-if="isCapturedImage" ng-click="cpImage('myModalLabel6')">Capture Image</button>
+                <button type="button" class="btn btn-primary" ng-if="!isCapturedImage" ng-click="attendance()">Yes It's me</button>
             </div>
         </div>
     </div>
 </div>
+<!--<div class="modal fade" id="scanAndSaveImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel7">Scan Image</h4>
+                <video id="video" width="400" height="400" autoplay muted></video>
+                <canvas id="canvas" style="overflow:auto" hidden="true"></canvas>
+                <img src="" id="capImg" hidden="true"></img>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-if="isCapturedImage" ng-click="cpImage('myModalLabel7')">Capture Image</button>
+                <button type="button" class="btn btn-primary" ng-if="!isCapturedImage" ng-click="registerImage()">Save Image</button>
+            </div>
+        </div>
+    </div>
+</div>-->
 </body>
 </html>
