@@ -5,7 +5,7 @@
   "author": "Manish Joshi",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.7.5",
+    "angular": "^1.8.3",
     "angular-material": "^1.1.24",
     "bootstrap": "^3.4.0",
     "jquery": "^3.3.1"
